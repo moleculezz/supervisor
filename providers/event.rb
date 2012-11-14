@@ -24,8 +24,8 @@ action :enable do
     user "root"
   end
 
-  template "#{node['supervisor']['dir']}/#{new_resource.service_name}.conf" do
-    source "program.conf.erb"
+  template "#{node['supervisor']['dir']}/#{new_resource.event_name}.conf" do
+    source "event.conf.erb"
     cookbook "supervisor"
     owner "root"
     group "root"
@@ -41,40 +41,32 @@ action :disable do
     user "root"
   end
 
-  file "#{node['supervisor']['dir']}/#{new_resource.service_name}.conf" do
+  file "#{node['supervisor']['dir']}/#{new_resource.event_name}.conf" do
     action :delete
     notifies :run, resources(:execute => "supervisorctl update"), :immediately
   end
 end
 
 action :start do
-  execute "supervisorctl start #{cmd_line_args}" do
+  execute "supervisorctl start #{new_resource.event_name}" do
     user "root"
   end
 end
 
 action :stop do
-  execute "supervisorctl stop #{cmd_line_args}" do
+  execute "supervisorctl stop #{new_resource.event_name}" do
     user "root"
   end
 end
 
 action :restart  do
-  execute "supervisorctl restart #{cmd_line_args}" do
+  execute "supervisorctl restart #{new_resource.event_name}" do
     user "root"
   end
 end
 
 action :reload  do
-  execute "supervisorctl restart #{cmd_line_args}" do
+  execute "supervisorctl restart #{new_resource.event_name}" do
     user "root"
   end
-end
-
-def cmd_line_args
-  name = new_resource.service_name
-  if new_resource.numprocs > 1
-    name += ':*'
-  end
-  name
 end
