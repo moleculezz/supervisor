@@ -20,6 +20,5 @@
 include_recipe "python"
 
 python_pip "superlance" do
-  action :upgrade
-  version node['superlance']['version'] if node['superlance']['version']
+  action :install
 end
