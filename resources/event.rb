@@ -34,7 +34,7 @@ attribute :buffer_size, :kind_of => Integer, :default => 10
 attribute :numprocs_start, :kind_of => Integer, :default => 0
 attribute :priority, :kind_of => Integer, :default => -1
 attribute :autostart, :kind_of => [TrueClass, FalseClass], :default => true
-attribute :autorestart, :kind_of => [String, Symbol, TrueClass, FalseClass], :default => :unexpected
+attribute :autorestart, :kind_of => [String, Symbol, TrueClass, FalseClass], :default => 'unexpected'
 attribute :startsecs, :kind_of => Integer, :default => 1
 attribute :startretries, :kind_of => Integer, :default => 3
 attribute :exitcodes, :kind_of => Array, :default => [0, 2]
