@@ -28,7 +28,7 @@ end
 attribute :event_name, :kind_of => String, :name_attribute => true
 attribute :command, :kind_of => String
 attribute :process_name, :kind_of => String, :default => '%(program_name)s'
-attribute :events, :kind_of => String, :default => 'EVENT'
+attribute :event, :kind_of => String, :default => 'EVENT'
 attribute :numprocs, :kind_of => Integer, :default => 1
 attribute :buffer_size, :kind_of => Integer, :default => 10
 attribute :numprocs_start, :kind_of => Integer, :default => 0
