@@ -18,8 +18,12 @@ startretries=<%= @prog.startretries %>
 exitcodes=<%= @prog.exitcodes.join(',') %>
 stopsignal=<%= @prog.stopsignal %>
 stopwaitsecs=<%= @prog.stopwaitsecs %>
-stopasgroup=<%= @prog.stopasgroup ? 'true' : 'false' %>
-killasgroup=<%= @prog.killasgroup ? 'true' : 'false' %>
+<% unless @prog.stopasgroup.nil? %>
+stopasgroup=<%= @prog.stopasgroup %>
+<% end %>
+<% unless @prog.killasgroup.nil? %>
+killasgroup=<%= @prog.killasgroup %>
+<% end %>
 <% if @prog.user %>
 user=<%= @prog.user %>
 <% end %>
