@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-include_recipe "python"
+include_recipe "supervisor"
 
 python_pip "superlance" do
   action :install
