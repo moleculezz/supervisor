@@ -1,9 +1,9 @@
 #
-# Author:: Noah Kantrowitz <noah@opscode.com>
+# Author:: G. Arends <gdarends@gmail.com>
 # Cookbook Name:: supervisor
-# Provider:: service
+# Provider:: event
 #
-# Copyright:: 2011, Opscode, Inc <legal@opscode.com>
+# Copyright:: 2013, Opscode, Inc <legal@opscode.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ action :enable do
     group "root"
     mode "644"
     variables :prog => new_resource
-    notifies :run, resources(:execute => "supervisorctl update"), :immediately
+    notifies :run, "execute[supervisorctl update]", :immediately
   end
 end
 
@@ -43,7 +43,7 @@ action :disable do
 
   file "#{node['supervisor']['dir']}/#{new_resource.event_name}.conf" do
     action :delete
-    notifies :run, resources(:execute => "supervisorctl update"), :immediately
+    notifies :run, "execute[supervisorctl update]", :immediately
   end
 end
 

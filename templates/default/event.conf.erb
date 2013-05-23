@@ -2,14 +2,7 @@
 command=<%= @prog.command %>
 process_name=<%= @prog.process_name %>
 numprocs=<%= @prog.numprocs %>
-events=<%= @prog.event %>
-buffer_size=<%= @prog.buffer_size %>
-<% if @prog.directory %>
-directory=<%= @prog.directory %>
-<% end %>
-<% if @prog.umask %>
-umask=<%= @prog.umask %>
-<% end %>
+numprocs_start=<%= @prog.numprocs_start %>
 priority=<%= @prog.priority %>
 autostart=<%= @prog.autostart ? 'true' : 'false' %>
 autorestart=<%= @prog.autorestart.is_a?(String) ? @prog.autorestart : ( @prog.autorestart ? 'true' : 'false' ) %>
@@ -39,4 +32,12 @@ stderr_events_enabled=<%= @prog.stderr_events_enabled ? 'true' : 'false' %>
 <% unless @prog.environment.empty? %>
 environment=<%= @prog.environment.map{|k,v| "#{k}=\"#{v}\""}.join(',') %>
 <% end %>
+<% if @prog.directory %>
+directory=<%= @prog.directory %>
+<% end %>
+<% if @prog.umask %>
+umask=<%= @prog.umask %>
+<% end %>
 serverurl=<%= @prog.serverurl %>
+buffer_size=<%= @prog.buffer_size %>
+events=<%= @prog.event %>
